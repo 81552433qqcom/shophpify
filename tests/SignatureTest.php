@@ -18,7 +18,7 @@ class SignatureTest extends PHPUnit_Framework_TestCase
 
         $signature = new Signature($request);
 
-        $this->assertTrue($signature->verified($hmac, 'client_secret'));
+        $this->assertTrue($signature->hasValidHmac($hmac, 'client_secret'));
     }
 
     /** @test */
@@ -35,7 +35,7 @@ class SignatureTest extends PHPUnit_Framework_TestCase
 
         $signature = new Signature($request);
 
-        $this->assertFalse($signature->verified($hmac, 'client_secret'));
+        $this->assertFalse($signature->hasValidHmac($hmac, 'client_secret'));
     }
 
     /** @test */
@@ -45,7 +45,7 @@ class SignatureTest extends PHPUnit_Framework_TestCase
 
         $signature = new Signature($request);
 
-        $this->assertTrue($signature->hasValidShop());
+        $this->assertTrue($signature->hasValidHostname());
     }
 
     /** @test */
@@ -55,7 +55,26 @@ class SignatureTest extends PHPUnit_Framework_TestCase
 
         $signature = new Signature($request);
 
-        $this->assertFalse($signature->hasValidShop());
+        $this->assertFalse($signature->hasValidHostname());
     }
 
+    /** @test */
+    function it_can_verify_nonce()
+    {
+        $request = ['state' => '12345'];
+
+        $signature = new Signature($request);
+
+        $this->assertTrue($signature->hasValidNonce('12345'));
+    }
+
+    /** @test */
+    function it_can_detect_invalid_nonce()
+    {
+        $request = ['state' => '12345'];
+
+        $signature = new Signature($request);
+
+        $this->assertFalse($signature->hasValidNonce('abcde'));
+    }
 }

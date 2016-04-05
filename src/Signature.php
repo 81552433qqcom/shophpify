@@ -11,7 +11,7 @@ class Signature
         $this->request = $request;
     }
 
-    public function verified($hmac, $secret)
+    public function hasValidHmac($hmac, $secret)
     {
         return ($hmac === hash_hmac($this->hashingAlgorithm(), $this->message(), $secret));
     }
@@ -28,7 +28,7 @@ class Signature
         return 'sha256';
     }
 
-    public function hasValidShop()
+    public function hasValidHostname()
     {
         return !! preg_match($this->validShopPattern(), $this->request['shop']);
     }
@@ -36,5 +36,10 @@ class Signature
     protected function validShopPattern()
     {
         return '/^([a-z]|[0-9]|\.|-)+myshopify.com$/i';
+    }
+
+    public function hasValidNonce($state)
+    {
+        return ($state === $this->request['state']);
     }
 }
