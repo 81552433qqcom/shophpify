@@ -7,7 +7,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /** @test */
     function it_builds_client_with_access_token_header_if_provided()
     {
-        $client = new Client('client_id', 'client_secret', 'access_token');
+        $client = new Client('access_token');
 
         $this->assertArrayHasKey('headers', $client->config());
         $this->assertArrayHasKey('X-Shopify-Access-Token', $client->config()['headers']);
@@ -17,7 +17,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
     /** @test */
     function it_builds_client_with_empty_array_as_config_if_no_access_token_provided()
     {
-        $client = new Client('client_id', 'client_secret');
+        $client = new Client();
 
         $this->assertEmpty($client->config());
     }
@@ -27,7 +27,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
     {
         $response = new \GuzzleHttp\Psr7\Response(200, [], json_encode(['works' => true]));
 
-        $client = new Client('client_id', 'client_secret');
+        $client = new Client();
 
         $this->assertEquals(['works' => true], $client->parse($response));
         $this->assertTrue($client->parse($response, 'works'));

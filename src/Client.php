@@ -7,18 +7,10 @@ use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
-    protected $clientId;
-
-    protected $clientSecret;
-
     protected $accessToken;
 
-    public function __construct($clientId, $clientSecret, $accessToken = null)
+    public function __construct($accessToken = null)
     {
-        $this->clientId = $clientId;
-
-        $this->clientSecret = $clientSecret;
-
         $this->accessToken = $accessToken;
     }
 
