@@ -14,6 +14,11 @@ class Client
         $this->accessToken = $accessToken;
     }
 
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
     public function get($url, array $options = [])
     {
         return $this->http()->get($url, $options);

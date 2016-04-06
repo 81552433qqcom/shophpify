@@ -77,4 +77,14 @@ class SignatureTest extends PHPUnit_Framework_TestCase
 
         $this->assertFalse($signature->hasValidNonce('abcde'));
     }
+
+    /** @test */
+    function it_does_not_allow_empty_string_for_nonce_check()
+    {
+        $request = ['state' => ''];
+
+        $signature = new Signature($request);
+
+        $this->assertFalse($signature->hasValidNonce(''));
+    }
 }

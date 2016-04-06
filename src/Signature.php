@@ -20,7 +20,9 @@ class Signature
     {
         $keysToRemove = ['signature', 'hmac'];
 
-        return urldecode(http_build_query(array_diff_key($this->request, array_flip($keysToRemove))));
+        $parameters = array_diff_key($this->request, array_flip($keysToRemove));
+
+        return urldecode(http_build_query($parameters));
     }
 
     protected function hashingAlgorithm()
@@ -40,6 +42,6 @@ class Signature
 
     public function hasValidNonce($state)
     {
-        return ($state === $this->request['state']);
+        return (strlen($state) && $state === $this->request['state']);
     }
 }
