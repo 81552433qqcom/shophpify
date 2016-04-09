@@ -46,6 +46,26 @@ $url = $endpoint->build('admin/shop.json', ['fields' => 'id,name,email']);
 `$endpoint->build(...)` above will return `https://my-new-store.myshopify.com/admin/shop.json?fields=id,name,email`
 
 
+## Woolf\Shophpify\Signature($request)
+
+Perform the security checks required by [Shopify](https://docs.shopify.com/api/guides/authentication/oauth#confirming-installation).
+
+`https://example.org/some/redirect/uri?code={authorization_code}&hmac=da9d83c171400a41f8db91a950508985&timestamp=1409617544&state={nonce}&shop={hostname}`
+
+```php
+<?php
+
+$signature = new Woolf\Shophpify\Signature($requestParametersAsArray);
+
+$signature->hasValidHmac('client_secret'); 
+
+$signature->hasValidHostname();
+
+$signature->hasValidState($stateValueSetWhileRequestingAccessToShop);
+
+```
+
+
 ## Woolf\Shophpify\Resource\Resource(Endpoint $endpoint, Client $client)
 
 Resource is an abstract class with access to an Endpoint and Client object.
@@ -68,3 +88,4 @@ $oauth = \Woolf\Shophpify\Resource\OAuth::make('my-new-store.myshopify.com');
 $shop = \Woolf\Shopify\Resource\Shop::make('my-new-store.myshopify.com', 'a_valid_access_token');
 
 ```
+
