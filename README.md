@@ -13,7 +13,7 @@ If created with an access token, it will include a `X-Shopify-Access-Token` head
 
 ## Woolf\Shophpify\Endpoint($domain)
 
-Build full Shopify API endpoint for shop.
+Builds full Shopify API endpoint for shop.
 
 ```php
 <?php
