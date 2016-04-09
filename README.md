@@ -57,7 +57,7 @@ Perform the security checks required by [Shopify](https://docs.shopify.com/api/g
 
 $signature = new Woolf\Shophpify\Signature($requestParametersAsArray);
 
-$signature->hasValidHmac('client_secret'); 
+$signature->hasValidHmac($hmac, 'client_secret'); 
 
 $signature->hasValidHostname();
 
