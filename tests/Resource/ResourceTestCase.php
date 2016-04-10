@@ -3,7 +3,6 @@
 namespace Woolf\Shophpify\Testing\Resource;
 
 use Dotenv\Dotenv;
-use Exception;
 use PHPUnit_Framework_TestCase;
 use Woolf\Shophpify\Client;
 use Woolf\Shophpify\Endpoint;
@@ -12,11 +11,9 @@ abstract class ResourceTestCase extends PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
-        if (! static::dotenv()) {
-            throw new Exception('No .env file found');
+        if (static::dotenv()) {
+            (new Dotenv(__DIR__.'/../../'))->load();
         }
-
-        (new Dotenv(__DIR__.'/../../'))->load();
     }
 
     protected static function dotenv()

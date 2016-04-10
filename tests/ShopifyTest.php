@@ -7,11 +7,9 @@ class ShopifyTest extends PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
-        if (! file_exists(__DIR__.'/../.env')) {
-            throw new Exception('No .env file found');
+        if (file_exists(__DIR__.'/../.env')) {
+            (new Dotenv(__DIR__.'/../'))->load();
         }
-
-        (new Dotenv(__DIR__.'/../'))->load();
     }
 
     /** @test */
@@ -23,7 +21,7 @@ class ShopifyTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             'https://foo.bar/admin/oauth/authorize?client_id=A&scope=B&redirect_uri=C&state=D',
-            $oauth->authorizationUrl('A', 'B','C','D')
+            $oauth->authorizationUrl('A', 'B', 'C', 'D')
         );
     }
 
