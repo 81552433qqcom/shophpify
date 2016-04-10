@@ -30,6 +30,10 @@ class ShopifyTest extends PHPUnit_Framework_TestCase
     /** @test */
     function it_can_build_resource_with_valid_access_token()
     {
+        if (! file_exists(__DIR__.'/../.env')) {
+            return $this->markTestSkipped('Skipping tests requiring .env');
+        }
+
         $shopify = new Shopify(getenv('SHOPIFY_STORE_DOMAIN'));
 
         $shopify = $shopify->setAccessToken(getenv('SHOPIFY_ACCESS_TOKEN'));

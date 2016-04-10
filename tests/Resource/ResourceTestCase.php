@@ -12,11 +12,16 @@ abstract class ResourceTestCase extends PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
-        if (! file_exists(__DIR__.'/../../.env')) {
+        if (! static::dotenv()) {
             throw new Exception('No .env file found');
         }
 
         (new Dotenv(__DIR__.'/../../'))->load();
+    }
+
+    protected static function dotenv()
+    {
+        return file_exists(__DIR__.'/../../.env');
     }
 
     protected function client()

@@ -8,6 +8,10 @@ class ApplicationChargeTest extends ResourceTestCase
     /** @test */
     function it_charges_store()
     {
+        if (! static::dotenv()) {
+            return $this->markTestSkipped('Skipping tests requiring .env');
+        }
+
         $applicationCharge = new ApplicationCharge($this->endpoint(), $this->client());
 
         $charge = $applicationCharge->create([
@@ -25,6 +29,10 @@ class ApplicationChargeTest extends ResourceTestCase
     /** @test */
     function it_gets_all_charges_for_store()
     {
+        if (! static::dotenv()) {
+            return $this->markTestSkipped('Skipping tests requiring .env');
+        }
+
         $applicationCharge = new ApplicationCharge($this->endpoint(), $this->client());
 
         $charges = $applicationCharge->all();
@@ -35,6 +43,10 @@ class ApplicationChargeTest extends ResourceTestCase
     /** @test */
     function it_gets_single_charge_for_store()
     {
+        if (! static::dotenv()) {
+            return $this->markTestSkipped('Skipping tests requiring .env');
+        }
+
         $applicationCharge = new ApplicationCharge($this->endpoint(), $this->client());
 
         $charges = $applicationCharge->all();
