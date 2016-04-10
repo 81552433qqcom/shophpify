@@ -17,7 +17,7 @@ class ShopifyTest extends PHPUnit_Framework_TestCase
     {
         $shopify = new Shopify('foo.bar');
 
-        $oauth = $shopify->resource('OAuth');
+        $oauth = $shopify->oauth;
 
         $this->assertEquals(
             'https://foo.bar/admin/oauth/authorize?client_id=A&scope=B&redirect_uri=C&state=D',
@@ -36,6 +36,6 @@ class ShopifyTest extends PHPUnit_Framework_TestCase
 
         $shopify = $shopify->setAccessToken(getenv('SHOPIFY_ACCESS_TOKEN'));
 
-        $this->assertArrayHasKey('id', $shopify->resource('Shop')->get());
+        $this->assertArrayHasKey('id', $shopify->shop->get());
     }
 }

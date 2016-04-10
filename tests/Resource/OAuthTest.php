@@ -1,13 +1,13 @@
 <?php
 
-use Woolf\Shophpify\Resource\OAuth;
+use Woolf\Shophpify\Resource\Oauth;
 
-class OAuthTest extends PHPUnit_Framework_TestCase
+class OauthTest extends PHPUnit_Framework_TestCase
 {
     /** @test */
     function it_can_be_created_by_passing_domain_to_static_method()
     {
-        $oauth = OAuth::make('foo.bar');
+        $oauth = Oauth::make('foo.bar');
 
         $this->assertEquals(
             'https://foo.bar/admin/oauth/authorize?client_id=A&scope=B&redirect_uri=C&state=D',

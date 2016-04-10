@@ -2,7 +2,7 @@
 
 namespace Woolf\Shophpify\Resource;
 
-class OAuth extends Resource
+class Oauth extends Resource
 {
     public function authorizationUrl($clientId, $scope, $redirectUri, $state)
     {
