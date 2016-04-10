@@ -10,4 +10,11 @@ class AbandonedCheckout extends Resource
 
         return $this->client->parse($response, 'checkouts');
     }
+
+    public function count()
+    {
+        $response = $this->client->get($this->endpoint->build('admin/checkouts/count.json'));
+
+        return $this->client->parse($response, 'count');
+    }
 }

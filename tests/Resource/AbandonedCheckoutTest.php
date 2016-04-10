@@ -24,12 +24,20 @@ class AbandonedCheckoutTest extends PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    function it_gets_number_of_abandoned_checkouts_for_shop()
+    function it_gets_of_abandoned_checkouts_for_shop()
     {
         $abandonedCheckout = new AbandonedCheckout($this->endpoint(), $this->client());
 
         $checkouts = $abandonedCheckout->all();
 
         $this->assertTrue(is_array($checkouts));
+    }
+
+    /** @test */
+    function it_gets_number_of_abandoned_checkouts_for_shop()
+    {
+        $abandonedCheckout = new AbandonedCheckout($this->endpoint(), $this->client());
+
+        $this->assertTrue(is_int($abandonedCheckout->count()));
     }
 }
