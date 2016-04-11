@@ -1,5 +1,5 @@
 # Shophpify
-Shopify API wrapping in PHP
+Shopify API Client in PHP
 
 ---
 
