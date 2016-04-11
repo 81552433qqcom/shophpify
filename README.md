@@ -1,5 +1,5 @@
 # Shophpify
-Shopify API Client in PHP
+Shopify PHP API Client
 
 ---
 
