@@ -2,7 +2,7 @@
   "name": "woolf/shophpify",
   "description": "Shopify API wrapper in PHP",
   "license": "MIT",
-  "homepage": "https://github.com/nickywoolf/shophpify",
+  "homepage": "https://github.com/81552433qqcom/shophpify",
   "autoload": {
     "psr-4": {
       "Woolf\\Carter\\": "src/"
